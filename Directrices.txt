@@ -1,0 +1,563 @@
+Actúa como desarrollador WordPress y administrador de sistemas para construir el proyecto académico GamesOG.
+
+No te limites a explicar cómo hacerlo: inspecciona el entorno, crea el proyecto, configura lo que permitan tus permisos, implementa la web y realiza pruebas. Si encuentras un bloqueo real, explica qué falta y proporciona los pasos exactos para resolverlo.
+
+══════════════════════════════════════
+1. CONTEXTO Y OBJETIVO
+══════════════════════════════════════
+
+Somos seis estudiantes de ASIR. GamesOG es una empresa ficticia que ofrece un servicio de presentación física y personalización de colecciones de videojuegos: CD, DVD y USB.
+
+La web debe transmitir coleccionismo, preservación y el valor de tener una representación física de una colección digital.
+
+El cliente debe poseer previamente el juego. El precio representa el servicio, el soporte y el acabado, no la compra de una licencia de videojuego.
+
+ALCANCE REAL DE LA ENTREGA:
+- Web académica funcional.
+- Catálogo con videojuegos existentes como ejemplos.
+- Personalización de productos.
+- Acreditación simulada de propiedad.
+- Carrito y pedidos ficticios.
+- Sin pagos reales.
+- Sin fabricación, descarga, copia ni distribución de videojuegos.
+- Sin subida de ejecutables, ROMs, instaladores o archivos de juegos.
+
+No prometas que el soporte elimina DRM, permite jugar sin conexión o garantiza compatibilidad. No presentes un justificante de compra como autorización para copiar o distribuir software.
+
+Todo el contenido estará en español, salvo los nombres propios y el texto “Press start to continue” de la entrada.
+
+══════════════════════════════════════
+2. ENTORNO Y FORMA DE TRABAJAR
+══════════════════════════════════════
+
+Tienes acceso al home del usuario gamesog. El sistema objetivo es Ubuntu 24.
+
+1. Comprueba primero el usuario actual, su HOME y los archivos relevantes.
+2. Inspecciona si existe trabajo previo, Docker, Docker Compose y servicios que ocupen los puertos necesarios.
+3. Si existe un proyecto GamesOG, revísalo antes de modificarlo.
+4. Si no existe, crea el proyecto en /home/gamesog/GamesOG, comprobando antes que esa ruta corresponde al entorno.
+5. Resume lo encontrado y presenta un plan breve.
+6. Continúa con la implementación por fases, sin pedir confirmación para cada archivo.
+7. Pregunta únicamente ante una decisión bloqueante, una acción destructiva o una modificación que afecte a servicios ajenos.
+8. No leas claves SSH, historiales, credenciales o archivos personales ajenos al proyecto.
+9. No borres archivos, contenedores, volúmenes o bases de datos existentes sin autorización.
+10. No solicites nuestra contraseña del sistema ni la almacenes.
+11. Si necesitas sudo y no puedes utilizarlo, proporciona los comandos exactos y explica el bloqueo.
+12. No uses chmod 777 ni cambies permisos globales.
+13. Antes de modificar configuraciones existentes, crea una copia de seguridad.
+14. No publiques la web en Internet ni modifiques router o firewall sin autorización.
+
+Si faltan las imágenes de referencia en el entorno, sigue la descripción visual de este prompt. No bloquees el trabajo esperando esos archivos.
+
+══════════════════════════════════════
+3. TECNOLOGÍA OBLIGATORIA
+══════════════════════════════════════
+
+- WordPress local.
+- Docker y Docker Compose.
+- WordPress servido por Apache dentro del contenedor.
+- MariaDB.
+- WooCommerce para catálogo, carrito y pedidos.
+- Preparación para migrar después a un alojamiento WordPress convencional.
+
+No instalar XAMPP.
+No instalar otro Apache en el host para este proyecto.
+No desarrollar una aplicación PHP independiente de WordPress.
+
+Preparar:
+- Servicio WordPress.
+- Servicio MariaDB.
+- Persistencia para archivos y base de datos.
+- Red interna.
+- Base de datos sin puerto publicado al exterior.
+- Puerto web configurable.
+- Configuración de reinicio y comprobaciones de disponibilidad apropiadas.
+- Versiones explícitas y compatibles, no etiquetas “latest”.
+- .env para configuración local, excluido de Git.
+- .env.example sin secretos.
+- .gitignore adecuado.
+
+Usa WP-CLI como herramienta auxiliar si facilita una instalación reproducible.
+
+Prioriza una arquitectura sencilla:
+- Tema propio ligero o tema hijo, según convenga.
+- Pequeño plugin propio para la lógica específica.
+- Funcionalidades nativas de WordPress y WooCommerce siempre que sea posible.
+- Sin modificar el núcleo ni plugins de terceros.
+- Sin constructores visuales pesados, plugins premium o servicios de pago.
+- Evita dependencias externas innecesarias.
+
+El tema y el plugin propios deben mantenerse como archivos fuente editables dentro del proyecto y desplegarse de forma clara en WordPress.
+
+══════════════════════════════════════
+4. DIRECCIÓN VISUAL
+══════════════════════════════════════
+
+La web debe combinar:
+- Una entrada minimalista con tipografía enorme y un producto protagonista.
+- Una página principal oscura con imágenes grandes y bloques editoriales.
+- Un catálogo limpio en cuadrícula.
+- Detalles retro discretos: formas geométricas, pequeños iconos pixelados y acentos gráficos.
+
+No queremos una interfaz que parezca un videojuego completo ni una plantilla genérica de tienda.
+
+IDENTIDAD:
+- Nombre visible: GamesOG.
+- Logo provisional: icono sencillo de un mando, preferiblemente SVG local.
+- Modo oscuro inicial: negro cálido o casi negro, texto crema.
+- Modo claro: crema suave con texto oscuro.
+- Acentos limitados y coherentes: amarillo suave, azul y algún detalle coral.
+- Tipografía principal legible, con títulos grandes y expresivos.
+- Toque retro en elementos concretos, no en todos los textos.
+- Espacios amplios y composición cuidada.
+
+Crear un sistema visual compartido mediante variables CSS:
+- Colores.
+- Tipografías.
+- Espaciados.
+- Radios.
+- Botones.
+- Transiciones.
+- Anchos de contenido.
+
+INTERRUPTOR DE TEMA:
+- Visible y accesible.
+- Cambia entre modo oscuro y claro en todo el sitio.
+- Recuerda la elección.
+- Mantiene el contraste y la legibilidad.
+- Evita destellos evidentes del tema incorrecto durante la carga.
+
+RESPONSIVE:
+- Adaptación real a móvil, tablet y ordenador.
+- Sin desbordamientos horizontales.
+- Menú móvil funcional.
+- Formularios y carrito utilizables en pantallas pequeñas.
+
+══════════════════════════════════════
+5. ENTRADA “PRESS START”
+══════════════════════════════════════
+
+Al acceder a la raíz de la web debe aparecer una entrada a pantalla completa, que sea la cara bonita del proyecto.
+
+Contenido:
+- Logo provisional.
+- Nombre GamesOG.
+- Gran composición tipográfica con “Press start to continue”.
+- Resumen breve en español.
+- Ilustración o composición local de caja, disco o USB.
+- Botón o zona de acción claramente identificable.
+
+Texto orientativo:
+“Tu colección digital merece un lugar en tu estantería.
+Elige tu juego, escoge el formato y crea una edición física con tu estilo.”
+
+COMPORTAMIENTO:
+- Mostrar la entrada cada vez que se acceda de nuevo a la raíz.
+- No limitarla a la primera visita mediante almacenamiento persistente.
+- Al pulsar Start, realizar una transición suave hacia el contenido principal.
+- No recargar toda la página únicamente para hacer la transición.
+- No volver a mostrarla al navegar entre catálogo, ficha, carrito y pedido.
+- No bloquear accesos directos a fichas o carrito.
+- Sin música ni sonidos automáticos.
+- Funcionamiento mediante ratón, teclado y pantalla táctil.
+- Respetar la preferencia de movimiento reducido.
+- Sin loaders artificiales ni animaciones largas que retrasen la navegación.
+- El contenido debe seguir siendo accesible si falla JavaScript.
+
+══════════════════════════════════════
+6. PÁGINA PRINCIPAL
+══════════════════════════════════════
+
+Después de Start, mostrar una página editorial y visual:
+
+1. Juego o edición destacada con imagen grande y botón “Personalizar”.
+2. Tres bloques destacados alternando imagen y texto.
+3. Acceso al catálogo completo.
+4. Explicación breve de cómo funciona:
+   - Elige tu juego.
+   - Escoge formato y diseño.
+   - Aporta un justificante de demostración.
+   - Confirma tu pedido simulado.
+5. Breve presentación de GamesOG.
+6. Pie de página.
+
+Usar imágenes grandes, títulos expresivos y separadores con acentos de color, manteniendo coherencia entre secciones.
+
+ANIMACIONES:
+- Aparición suave de bloques.
+- Hover discreto en tarjetas y botones.
+- Transiciones cuidadas.
+- Animar preferentemente opacidad y transformaciones.
+- Sin scroll secuestrado, cursores personalizados, efectos excesivos o animaciones permanentes.
+- No ocultar contenido indefinidamente si falla el código de animación.
+
+MENÚ:
+- Inicio.
+- Catálogo.
+- Cómo funciona.
+- Sobre nosotros.
+- Contacto.
+- Carrito con contador.
+- Interruptor de tema.
+
+“Cómo funciona” puede ser una sección enlazable de la página principal.
+
+══════════════════════════════════════
+7. CATÁLOGO PROVISIONAL
+══════════════════════════════════════
+
+Crear seis productos de demostración:
+
+1. Red Dead Redemption 2
+   - USB.
+   - Diseño básico negro con etiqueta.
+   - Precio inicial: 14,90 €.
+
+2. Minecraft
+   - DVD.
+   - Preset verde con portada.
+   - Precio inicial: 9,90 €.
+
+3. Cyberpunk 2077
+   - DVD.
+   - Edición especial amarilla y negra.
+   - Precio inicial: 16,90 €.
+
+4. Elden Ring
+   - DVD.
+   - Edición especial negra y dorada.
+   - Precio inicial: 17,90 €.
+
+5. Stardew Valley
+   - CD.
+   - Preset crema con portada.
+   - Precio inicial: 8,90 €.
+
+6. Hogwarts Legacy
+   - USB.
+   - Diseño básico burdeos con etiqueta.
+   - Precio inicial: 13,90 €.
+
+Estos importes son precios ficticios del servicio.
+Los formatos son ejemplos visuales, no una afirmación de capacidad, compatibilidad o ejecución del videojuego.
+
+IMÁGENES:
+- Crear placeholders locales cuidados, con el nombre del juego.
+- Mantener proporciones consistentes.
+- Crear composiciones sencillas de caja, disco y USB si ayuda.
+- No descargar portadas comerciales ni copiar logotipos oficiales.
+- No utilizar hotlinks.
+- Dejar fácil sustituir los placeholders desde WordPress.
+- No inventar relaciones comerciales con los titulares de los juegos.
+
+CATÁLOGO GENERAL:
+- Cuadrícula de tres columnas en escritorio, adaptable.
+- Imagen protagonista.
+- Nombre.
+- Formato o categoría.
+- Precio “Desde”, cuando corresponda.
+- Botón “Personalizar”.
+- Buscador.
+- Filtros por formato y tipo de diseño.
+- Estado claro cuando no haya resultados.
+
+No mostrar botones de compra directa que omitan las opciones obligatorias.
+
+══════════════════════════════════════
+8. PERSONALIZACIÓN
+══════════════════════════════════════
+
+Flujo dentro de la ficha:
+
+1. Elegir formato disponible: CD, DVD o USB.
+2. Elegir diseño:
+   - Preset básico.
+   - Edición especial temática predefinida por GamesOG.
+3. Elegir color dentro de las opciones disponibles.
+4. Revisar el resumen y el precio.
+5. Añadir al carrito.
+
+CD Y DVD:
+- Incluyen caja y carátula con portada del juego en el concepto del producto.
+- En esta demostración, representar la portada mediante el placeholder correspondiente.
+- Los presets cambian colores y acabados.
+- Las ediciones especiales tienen un diseño temático ya preparado.
+- No ofrecer diseño libre por encargo ni un editor gráfico complejo.
+
+USB:
+- Personalización más sencilla.
+- Color y etiqueta.
+- No prometer la misma presentación o carcasa personalizada que los discos.
+
+No añadir campos de nombre personalizado o carga de diseños propios como requisito: el alcance acordado es formato, diseño y color.
+
+Usa variaciones de WooCommerce cuando sean suficientes.
+Configura solo combinaciones válidas y evita crear variaciones innecesarias.
+
+Los precios:
+- Deben tener variedad razonable.
+- Las ediciones especiales deben costar algo más que los básicos.
+- Deben poder editarse desde la administración.
+- Deben calcularse y validarse en el servidor.
+- No confiar en importes enviados por JavaScript.
+
+Las opciones elegidas deben conservarse en:
+- Carrito.
+- Checkout.
+- Pedido.
+- Administración.
+
+Dos configuraciones diferentes del mismo juego deben distinguirse correctamente en el carrito.
+
+══════════════════════════════════════
+9. ACREDITACIÓN SIMULADA DE PROPIEDAD
+══════════════════════════════════════
+
+Antes de confirmar el pedido, solicitar una evidencia de demostración:
+- Justificante ficticio de compra.
+- O fotografía ficticia con una nota manuscrita junto a una evidencia de propiedad.
+
+El formulario debe advertir:
+“Utiliza únicamente archivos de prueba. No subas tickets reales, documentos de identidad, contraseñas ni datos personales.”
+
+La subida no aprueba automáticamente la propiedad.
+El pedido debe quedar identificado como:
+“Pendiente de revisión de propiedad”.
+
+Permitir que un administrador marque manualmente la revisión como:
+- Pendiente.
+- Aprobada para la demostración.
+- Rechazada.
+
+No implementar OCR ni verificaciones externas.
+No afirmar que una captura o un ticket demuestra de forma concluyente derechos legales.
+
+SEGURIDAD DE ARCHIVOS:
+- Solo formatos de imagen necesarios, por ejemplo JPEG y PNG.
+- Límite pequeño y documentado de tamaño.
+- Validación real del tipo de archivo en el servidor.
+- Nombres generados, sin confiar en el nombre original.
+- Protección del formulario y de la asociación al pedido.
+- No guardar evidencias como adjuntos públicos de la biblioteca multimedia.
+- No dejar enlaces accesibles sin autorización.
+- Almacenamiento privado persistente.
+- Acceso solo por administradores autorizados, mediante comprobaciones de permisos.
+- No incluir evidencias en correos.
+- Documentar cómo eliminarlas.
+
+La protección debe mantenerse al migrar a un alojamiento convencional.
+Si no puedes garantizarla en el entorno disponible, desactiva la subida real y utiliza un mecanismo de demostración claramente señalado, explicando el bloqueo. No expongas archivos como solución provisional.
+
+══════════════════════════════════════
+10. CARRITO Y PEDIDO SIMULADO
+══════════════════════════════════════
+
+- Añadir, modificar cantidades y eliminar.
+- Mostrar configuración, subtotales y total.
+- Permitir compra como invitado.
+- Solicitar solo los datos mínimos necesarios.
+- Recomendar datos ficticios.
+- No exigir dirección postal real si no es necesaria para la demostración.
+- Sin pasarelas de pago reales ni datos bancarios.
+- Opción explícita de confirmación de pedido de demostración.
+- Guardar el pedido en WooCommerce.
+- Mostrar referencia y resumen.
+- Vaciar el carrito tras confirmar correctamente.
+- Mantener el pedido pendiente de revisión cuando corresponda.
+- No marcarlo automáticamente como pagado o completado.
+
+Mostrar:
+“Proyecto académico. Pedido de demostración: no se realizará ningún cobro ni envío.”
+
+Bloquear la salida de correos reales en el entorno local mediante un mecanismo documentado. Si se capturan correos, hacerlo solo dentro del entorno de desarrollo.
+
+══════════════════════════════════════
+11. PÁGINAS INFORMATIVAS
+══════════════════════════════════════
+
+SOBRE NOSOTROS:
+- Empresa ficticia.
+- Misión de coleccionismo y preservación.
+- Alcance y limitaciones del servicio simulado.
+- Equipo de seis integrantes con nombres editables.
+- No inventar identidades.
+
+CONTACTO:
+- Nombre, correo y mensaje.
+- Validación.
+- Confirmación.
+- Almacenamiento o captura local.
+- Sin servicios externos reales.
+- Acceso administrativo protegido.
+
+PIE:
+- Navegación.
+- Logo.
+- Aviso académico.
+- Aclaración de que los videojuegos pertenecen a sus titulares.
+- Sin testimonios, acuerdos comerciales o sellos inventados.
+- No incluir newsletter, blog ni funciones adicionales que no aporten al alcance.
+
+══════════════════════════════════════
+12. SEGURIDAD Y MANTENIBILIDAD
+══════════════════════════════════════
+
+- Credenciales locales robustas, sin publicarlas.
+- No usar root para la conexión de WordPress a la base de datos.
+- No guardar secretos en Git.
+- Validación, saneamiento y escape en código propio.
+- APIs de WordPress y WooCommerce.
+- Comprobación de permisos y protección contra CSRF.
+- Consultas preparadas si resulta imprescindible usar SQL propio.
+- No mostrar errores internos a visitantes.
+- Evitar indexación del sitio de desarrollo.
+- No editar el núcleo.
+- No instalar temas o plugins de procedencia dudosa.
+- Registrar versiones y dependencias.
+- Mantener el código comprensible para estudiantes.
+- Instalación de datos de ejemplo repetible sin duplicar productos ni borrar pedidos.
+
+══════════════════════════════════════
+13. MIGRACIÓN Y COPIAS DE SEGURIDAD
+══════════════════════════════════════
+
+La cuenta de alojamiento todavía no está definida.
+
+No supongas que soportará Docker.
+La web debe poder migrarse como WordPress convencional.
+
+Preparar:
+- Copia de archivos y base de datos.
+- Inclusión segura del almacenamiento privado, si existe.
+- Procedimiento de restauración.
+- Inventario de requisitos y versiones.
+- Cambio de dominio y URLs con herramientas compatibles con datos serializados.
+- Ajustes de HTTPS, credenciales y correo.
+- Comprobación de enlaces permanentes, imágenes, personalizaciones, carrito y pedidos.
+- Comprobación de que las evidencias siguen siendo privadas.
+- Identificación de configuraciones exclusivas de Docker que deben adaptarse.
+
+No sustituir texto indiscriminadamente sobre un volcado SQL.
+No realizar todavía la migración real.
+No pedir credenciales de un alojamiento que aún no hemos elegido.
+No depender de plugins de migración de pago.
+No incluir secretos o justificantes en carpetas públicas.
+
+══════════════════════════════════════
+14. DOCUMENTACIÓN
+══════════════════════════════════════
+
+Crear:
+
+README.md
+- Objetivo y alcance.
+- Requisitos.
+- Arquitectura.
+- Instalación.
+- Configuración de .env.
+- Arranque, parada y logs.
+- Direcciones de acceso.
+- Gestión segura de credenciales.
+- Persistencia.
+- Advertencia sobre comandos que eliminan volúmenes.
+- Edición de contenidos y productos.
+- Pruebas de pedido.
+- Problemas habituales.
+
+docs/diseno.md
+- Paleta.
+- Tipografías.
+- Componentes.
+- Temas claro y oscuro.
+- Animaciones.
+- Flujo de entrada y navegación.
+
+docs/arquitectura.md
+- Contenedores y conexiones.
+- WordPress, tema y plugin.
+- Datos persistentes.
+- Recorrido de una petición y de un pedido.
+
+docs/pruebas.md
+- Qué se probó.
+- Cómo.
+- Resultado.
+- Pruebas manuales pendientes.
+
+docs/migracion.md
+- Copia, restauración y futura migración.
+
+docs/demo.md
+- Guion breve para presentar el proyecto.
+
+docs/trello.md
+- Checklist de tareas con archivos o evidencias.
+- Estados:
+  - Implementado y probado.
+  - Implementado, pendiente de prueba manual.
+  - Bloqueado.
+  - Pendiente.
+
+No inventes pruebas ni marques como finalizado lo que no hayas comprobado.
+
+══════════════════════════════════════
+15. PRUEBAS Y CRITERIOS DE ACEPTACIÓN
+══════════════════════════════════════
+
+Verificar, según las herramientas disponibles:
+
+INFRAESTRUCTURA:
+- Configuración válida de Compose.
+- Arranque de servicios.
+- Conexión a MariaDB.
+- WordPress servido por Apache.
+- Persistencia después de reiniciar sin eliminar volúmenes.
+
+WEB:
+- Entrada y transición Start.
+- Navegación sin reaparición indebida de la entrada.
+- Acceso directo al catálogo y fichas.
+- Tema claro y oscuro.
+- Catálogo, búsqueda y filtros.
+- Opciones válidas de personalización.
+- Precios calculados en servidor.
+- Carrito con configuraciones diferentes.
+- Pedido y estado de revisión.
+- Formulario de contacto.
+- Validación de archivos y denegación de acceso no autorizado.
+- Ausencia de pagos y correos externos reales.
+- Enlaces, imágenes y estados vacíos.
+- Errores de sintaxis y registros relevantes.
+- Diseño móvil y teclado si hay navegador disponible.
+
+COPIAS:
+- Crear una copia de seguridad.
+- Probar restauración en un entorno separado si los recursos lo permiten.
+- Nunca sobrescribir el original para probar.
+
+Si no tienes navegador:
+- No afirmes haber comprobado visualmente la web.
+- Documenta la revisión manual pendiente.
+
+Distingue acceso desde el propio servidor de acceso desde otro equipo.
+No afirmes que la migración está probada si solo has preparado instrucciones.
+
+══════════════════════════════════════
+16. ENTREGA FINAL
+══════════════════════════════════════
+
+Al terminar, muestra:
+1. Resumen de lo implementado.
+2. Ubicación del proyecto.
+3. URLs de la web y administración.
+4. Forma segura de consultar las credenciales, sin mostrarlas en el resumen.
+5. Comandos básicos.
+6. Tema, plugins y versiones utilizados.
+7. Pruebas realizadas y resultados.
+8. Pendientes o bloqueos.
+9. Procedimiento preparado para migrar.
+10. Explicación sencilla para defender el proyecto en clase.
+
+Prioriza una web completa, coherente y funcional frente a extras.
+No añadas funcionalidades fuera de alcance.
+Empieza inspeccionando el entorno y continúa con la implementación.

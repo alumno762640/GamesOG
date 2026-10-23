@@ -1,0 +1,427 @@
+/* Capa visual de acabado para portada, catálogo, fichas y formularios. */
+:root {
+  --shadow-soft: 0 18px 48px rgba(0, 0, 0, .2);
+  --shadow-hard: 6px 6px 0 color-mix(in srgb, var(--yellow) 62%, transparent);
+  --ease-spring: cubic-bezier(.2, .78, .22, 1.12);
+}
+
+body:not(.has-intro) {
+  background-image: radial-gradient(ellipse at 12% 18%, color-mix(in srgb, var(--blue) 6%, transparent), transparent 34rem),
+    radial-gradient(ellipse at 88% 42%, color-mix(in srgb, var(--coral) 5%, transparent), transparent 38rem);
+  background-attachment: fixed;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--line) 75%, transparent);
+  transition: background var(--ease), box-shadow var(--ease);
+}
+.brand { transition: transform 260ms var(--ease-spring); }
+.brand:hover { transform: translateY(-1px); }
+.brand-mark { transition: transform 320ms var(--ease-spring); }
+.brand:hover .brand-mark { transform: rotate(-7deg) scale(1.07); }
+.site-nav a:not(.cart-link) { position: relative; padding-block: .35rem; font-weight: 620; }
+.site-nav a:not(.cart-link)::after {
+  position: absolute;
+  right: 0;
+  bottom: .12rem;
+  left: 0;
+  height: 2px;
+  background: var(--yellow);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms var(--ease-spring);
+}
+.site-nav a:not(.cart-link):hover::after,
+.site-nav a:not(.cart-link):focus-visible::after { transform: scaleX(1); }
+.cart-link { padding: .35rem .65rem; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; transition: border-color var(--ease), background var(--ease); }
+.cart-link:hover { border-color: var(--yellow); background: color-mix(in srgb, var(--yellow) 8%, transparent); }
+
+.button, .wp-element-button, .single_add_to_cart_button, .checkout-button,
+.theme-toggle, .menu-toggle {
+  transition: transform 300ms var(--ease-spring), box-shadow 300ms ease, background-color 220ms ease, border-color 220ms ease, color 220ms ease;
+}
+.button:hover, .wp-element-button:hover, .single_add_to_cart_button:hover, .checkout-button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hard);
+}
+.button:active, .wp-element-button:active, .single_add_to_cart_button:active, .checkout-button:active { transform: translateY(0) scale(.98); box-shadow: none; }
+.theme-toggle:hover, .menu-toggle:hover { border-color: var(--yellow); background: color-mix(in srgb, var(--yellow) 9%, transparent); }
+
+.home-hero {
+  position: relative;
+  isolation: isolate;
+  background-image: linear-gradient(90deg, color-mix(in srgb, var(--text) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb, var(--text) 4%, transparent) 1px, transparent 1px),
+    radial-gradient(ellipse at 78% 50%, color-mix(in srgb, var(--yellow) 8%, transparent), transparent 43%);
+  background-size: 72px 72px, 72px 72px, auto;
+}
+.home-hero .hero-copy-block, .home-hero .hero-art { z-index: 1; }
+.home-hero .hero-copy-block { animation: gamesog-copy-enter 760ms cubic-bezier(.2, .75, .25, 1) both; }
+.home-hero .hero-art { animation: gamesog-art-enter 900ms 100ms var(--ease-spring) both; }
+.home-hero .hero-featured-art img { transition: transform 560ms var(--ease-spring), filter 560ms ease; }
+.home-hero .hero-featured-art:hover img { transform: translateY(-7px) rotate(-1deg) scale(1.015); filter: drop-shadow(0 32px 30px #0007); }
+.hero-featured-tag { border-radius: 2px 12px 2px 2px; }
+
+.page-shell:not(.page-catalog) > .page-intro { padding-bottom: 1.35rem; border-bottom: 1px solid var(--line); }
+.page-shell .page-intro h1 { text-wrap: balance; }
+.page-shell:not(.page-catalog) > .page-intro::after {
+  display: block;
+  width: min(10rem, 32vw);
+  height: 3px;
+  margin-top: 1.25rem;
+  background: linear-gradient(90deg, var(--yellow), var(--coral), transparent);
+  content: "";
+}
+.page-catalog .page-intro { padding-bottom: 1.35rem; border-bottom: 1px solid var(--catalog-line); }
+
+.feature-image { overflow: visible; }
+.feature-image img { box-shadow: var(--shadow-soft); transition: transform 520ms var(--ease-spring), filter 520ms ease; }
+.feature-image:hover img { transform: translateY(-5px) rotate(.35deg); filter: saturate(1.08); }
+.feature-row { padding-bottom: 1.2rem; }
+.accent-rule { width: 4rem; box-shadow: 1.3rem 0 0 color-mix(in srgb, var(--yellow) 52%, transparent), 2.6rem 0 0 color-mix(in srgb, var(--blue) 42%, transparent); }
+.how-card {
+  min-height: 12rem;
+  padding: 1.3rem;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--yellow);
+  border-radius: 3px 3px 12px 3px;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--panel) 88%, transparent), transparent);
+  transition: transform 320ms var(--ease-spring), border-color 240ms ease, box-shadow 320ms ease;
+}
+.how-card:nth-child(even) { border-top-color: var(--blue); }
+.how-card:before { margin-bottom: 1.3rem; }
+.how-card:hover { transform: translateY(-5px); border-color: var(--yellow); box-shadow: var(--shadow-soft); }
+.how-card p { margin-bottom: 0; color: var(--muted); }
+
+.product-card, .content-card, .team-card { box-shadow: 0 8px 24px rgba(0, 0, 0, .08); }
+.product-card { border-radius: 3px 3px 14px 3px; }
+.product-card:hover, .product-card:focus-within { box-shadow: var(--shadow-soft); }
+.product-card img { transition: transform 520ms var(--ease-spring), filter 420ms ease; }
+.product-card:hover img, .product-card:focus-within img { transform: scale(1.025); filter: saturate(1.06); }
+.page-catalog .product-card img { border-color: color-mix(in srgb, var(--yellow) 72%, var(--line)); box-shadow: 0 8px 24px rgba(0, 0, 0, .14); }
+.product-card .button { box-shadow: 3px 3px 0 color-mix(in srgb, var(--blue) 52%, transparent); }
+.product-card:hover .button { box-shadow: 5px 5px 0 color-mix(in srgb, var(--blue) 65%, transparent); }
+.browse-card img { box-shadow: 0 12px 28px rgba(0, 0, 0, .18); }
+.browse-card:hover img, .browse-card:focus-visible img { box-shadow: var(--shadow-hard); }
+.home-hero .hero-featured-art img { transform-origin: 54% 50%; }
+.home-hero .hero-featured-art:hover img, .home-hero .hero-featured-art:focus-visible img { transform: translateY(-9px) rotate(-1deg) scale(1.045); filter: saturate(1.16) drop-shadow(0 30px 28px rgba(0,0,0,.38)); }
+.hero-featured-tag { transition: transform 360ms var(--ease-spring), box-shadow 360ms ease, border-color 240ms ease; }
+.hero-featured-art:hover .hero-featured-tag, .hero-featured-art:focus-visible .hero-featured-tag { transform: translateY(-7px) rotate(-1deg); border-color: var(--yellow); box-shadow: 8px 8px 0 color-mix(in srgb, var(--blue) 62%, transparent); }
+
+.feature-image-link { display: block; border-radius: var(--radius); outline-offset: 5px; }
+.feature-image-link img { transform-origin: center; transition: transform 620ms var(--ease-spring), filter 520ms ease, box-shadow 520ms ease; }
+.feature-image-link:hover img, .feature-image-link:focus-visible img { transform: translateY(-8px) scale(1.035) rotate(-.45deg); filter: saturate(1.15); box-shadow: 0 24px 54px rgba(0,0,0,.34); }
+.feature-image-cta { position: absolute; z-index: 2; right: .8rem; bottom: .8rem; display: inline-flex; align-items: center; gap: .5rem; padding: .5rem .75rem; border: 1px solid color-mix(in srgb, var(--yellow) 65%, var(--line)); border-radius: 2px 10px 2px 2px; background: var(--bg); color: var(--text); font-size: .75rem; font-weight: 800; box-shadow: 3px 3px 0 color-mix(in srgb, var(--blue) 55%, transparent); transition: transform 320ms var(--ease-spring), background 240ms ease, color 240ms ease, box-shadow 320ms ease; }
+.feature-image-link:hover .feature-image-cta, .feature-image-link:focus-visible .feature-image-cta { transform: translateY(-4px) scale(1.04); background: var(--yellow); color: var(--ink); box-shadow: 5px 5px 0 var(--blue); }
+.feature-game-link { display: inline-flex; align-items: center; gap: .45rem; margin-top: .25rem; color: var(--yellow); font-weight: 800; text-decoration-thickness: 1px; text-underline-offset: .25em; }
+.feature-game-link span, .browse-card span b { display: inline-block; transition: transform 260ms var(--ease-spring); }
+.feature-game-link:hover span, .feature-game-link:focus-visible span, .browse-card:hover span b, .browse-card:focus-visible span b { transform: translate(4px,-3px); }
+
+.browse-card { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 12px 3px 12px 3px; background: var(--panel); box-shadow: 0 12px 30px rgba(0,0,0,.18); transition: transform 420ms var(--ease-spring), border-color 300ms ease, box-shadow 420ms ease; }
+.browse-card:hover, .browse-card:focus-visible { transform: translateY(-9px) rotate(-.55deg); border-color: var(--yellow); box-shadow: 0 22px 46px rgba(0,0,0,.32), 5px 5px 0 color-mix(in srgb, var(--blue) 60%, transparent); }
+.browse-card img { border: 0; border-radius: 0; box-shadow: none; transition: transform 620ms var(--ease-spring), filter 500ms ease; }
+.browse-card:hover img, .browse-card:focus-visible img { transform: scale(1.065); filter: saturate(1.17); box-shadow: none; }
+.browse-card span { display: flex; justify-content: space-between; align-items: center; gap: .5rem; min-height: 3.4rem; padding: .75rem .9rem; transition: color 240ms ease; }
+.browse-card span b { color: var(--yellow); font-size: 1.15em; }
+.browse-card:hover span, .browse-card:focus-visible span { color: var(--yellow); }
+.product-card { transition: transform 380ms var(--ease-spring), border-color 260ms ease, box-shadow 380ms ease; }
+.product-card:hover, .product-card:focus-within { transform: translateY(-7px); border-color: var(--yellow); }
+.product-card:hover .button, .product-card:focus-within .button { transform: translateY(-2px) scale(1.035); }
+.woocommerce .related.products ul.products li.product { transition: transform 380ms var(--ease-spring), border-color 260ms ease, box-shadow 380ms ease; }
+.woocommerce .related.products ul.products li.product:hover, .woocommerce .related.products ul.products li.product:focus-within { transform: translateY(-6px); border-color: var(--yellow); }
+.woocommerce .related.products ul.products li.product .gamesog-related-customize { transition: transform 300ms var(--ease-spring), box-shadow 300ms ease, background-color 220ms ease; }
+.woocommerce .related.products ul.products li.product .gamesog-related-customize { display: flex; box-sizing: border-box; width: calc(100% - 2rem); justify-content: center; white-space: nowrap; }
+.woocommerce .related.products ul.products li.product .gamesog-related-customize:hover { transform: translateY(-3px) scale(1.035); background: var(--coral); color: var(--ink) !important; box-shadow: 5px 5px 0 var(--blue); }
+.button:focus-visible, .feature-game-link:focus-visible, .feature-image-link:focus-visible, .browse-card:focus-visible, .product-card a:focus-visible, .woocommerce .related.products a:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+.team-card { transition: transform 300ms var(--ease-spring), border-color 220ms ease, box-shadow 300ms ease; }
+.team-card:hover { transform: translateY(-4px); border-color: var(--yellow); box-shadow: var(--shadow-soft); }
+.team-portrait svg { transition: transform 380ms var(--ease-spring); }
+.team-card:hover .team-portrait svg { transform: rotate(-4deg) scale(1.04); }
+
+.catalog-controls label { color: var(--muted); font-weight: 700; letter-spacing: .025em; }
+.catalog-controls input:hover, .catalog-controls select:hover,
+.gamesog-options select:hover, .gamesog-contact input:hover, .gamesog-contact textarea:hover { border-color: color-mix(in srgb, var(--yellow) 70%, var(--line)); }
+.notice { border-radius: 0 8px 8px 0; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--line) 30%, transparent); }
+
+.woocommerce div.product {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr);
+  align-items: start;
+  column-gap: clamp(2rem, 5vw, 5rem);
+  row-gap: 2rem;
+}
+.woocommerce div.product div.images, .woocommerce div.product div.summary { float: none; width: auto; margin: 0; }
+.woocommerce div.product div.images { position: relative; top: auto; align-self: start; z-index: 0; }
+.woocommerce div.product .product_title { margin-bottom: .7rem; text-wrap: balance; }
+.woocommerce div.product .price { color: var(--yellow); font-size: 1.2rem; font-weight: 750; }
+.woocommerce div.product .woocommerce-product-details__short-description { color: var(--muted); }
+.woocommerce div.product form.cart { max-width: none; margin-top: 1.25rem; padding: 1.1rem; border: 1px solid var(--line); border-radius: 4px 4px 14px 4px; background: color-mix(in srgb, var(--panel) 80%, transparent); }
+.woocommerce div.product .gamesog-options { max-width: none; }
+.woocommerce div.product .gamesog-price-note { border-radius: 0 7px 7px 0; }
+.woocommerce div.product .product_meta { padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
+.gamesog-product-gallery img { box-shadow: var(--shadow-soft); }
+.woocommerce .related.products ul.products li.product { box-shadow: 0 8px 22px rgba(0, 0, 0, .12); }
+.woocommerce .related.products ul.products li.product:hover { box-shadow: var(--shadow-soft); }
+.woocommerce .related.products ul.products li.product a img { transition: transform 520ms var(--ease-spring), filter 420ms ease; }
+.woocommerce .related.products ul.products li.product:hover a img { transform: scale(1.025); filter: saturate(1.08); }
+.woocommerce .related.products ul.products li.product .gamesog-related-customize { border: 0; border-radius: 3px; background: var(--yellow); color: var(--ink) !important; box-shadow: 3px 3px 0 color-mix(in srgb, var(--blue) 52%, transparent); }
+
+.woocommerce table.shop_table { overflow: hidden; border-radius: 6px; border-collapse: separate; border-spacing: 0; }
+.woocommerce table.shop_table th { background: color-mix(in srgb, var(--panel) 82%, transparent); }
+.woocommerce form .form-row { margin-bottom: .9rem; }
+.woocommerce form .form-row label { margin-bottom: .3rem; }
+.woocommerce .woocommerce-checkout-payment, .woocommerce .cart-collaterals .cart_totals { padding: 1.2rem; border: 1px solid var(--line); border-radius: 4px 4px 14px 4px; background: var(--panel); }
+.site-footer { position: relative; margin-top: 2rem; }
+.site-footer::before { position: absolute; top: -1px; right: max(5vw, calc((100vw - var(--content))/2)); left: max(5vw, calc((100vw - var(--content))/2)); height: 2px; background: linear-gradient(90deg, var(--coral), var(--yellow) 38%, var(--blue) 72%, transparent); content: ""; }
+.site-footer nav a { transition: color 220ms ease, transform 220ms var(--ease-spring); }
+.site-footer nav a:hover { transform: translateY(-2px); }
+
+.gamesog-reveal { opacity: 0; transform: translateY(22px); transition: opacity 680ms ease var(--reveal-delay, 0ms), transform 680ms var(--ease-spring) var(--reveal-delay, 0ms); }
+.gamesog-reveal.is-revealed { opacity: 1; transform: none; }
+
+@keyframes gamesog-copy-enter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes gamesog-art-enter { from { opacity: 0; transform: translate3d(0, 20px, 0) rotate(1deg); } to { opacity: 1; transform: none; } }
+
+@media(max-width:900px) {
+  .woocommerce div.product { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 1.5rem; }
+}
+@media(max-width:700px) {
+  .site-header { min-height: 68px; }
+  .site-nav { box-shadow: 0 18px 25px rgba(0, 0, 0, .17); }
+  .home-hero { background-size: 52px 52px, 52px 52px, auto; }
+  .woocommerce div.product { grid-template-columns: minmax(0, 1fr); margin-top: 2rem; }
+  .woocommerce .related.products ul.products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+  .woocommerce .related.products ul.products li.product { width: 100%; min-width: 0; }
+  .woocommerce .related.products ul.products li.product .gamesog-related-customize { width: calc(100% - 1.4rem); margin: .6rem .7rem 0; padding: .55rem .45rem; font-size: .82rem; }
+  .woocommerce div.product .product_title { font-size: clamp(2.2rem, 11vw, 3.4rem); }
+  .how-card { min-height: 0; }
+}
+@media(max-width:580px) {
+  .site-header { top: 0; }
+  .page-shell:not(.page-catalog) { padding-top: 2.4rem; }
+  .feature-row { padding-bottom: .5rem; }
+  .how-grid { gap: .7rem; }
+  .how-card { padding: 1rem; }
+  .site-footer::before { right: var(--space); left: var(--space); }
+  .woocommerce .related.products ul.products li.product { padding-bottom: .8rem; }
+  .browse-card:hover, .browse-card:focus-visible { transform: translateY(-4px); }
+  .feature-image-cta { right: .5rem; bottom: .5rem; padding: .4rem .6rem; font-size: .68rem; }
+  .woocommerce .related.products ul.products li.product .gamesog-related-customize { font-size: .76rem; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .gamesog-reveal, .gamesog-reveal.is-revealed { opacity: 1; transform: none; transition: none; }
+  .home-hero .hero-copy-block, .home-hero .hero-art { animation: none; }
+  .brand, .brand-mark, .feature-image img, .feature-image-cta, .hero-featured-tag, .browse-card, .browse-card img, .product-card, .team-card, .team-portrait svg { transition: none; }
+  .home-hero .hero-featured-art:hover img, .home-hero .hero-featured-art:focus-visible img,
+  .hero-featured-art:hover .hero-featured-tag, .hero-featured-art:focus-visible .hero-featured-tag,
+  .feature-image-link:hover img, .feature-image-link:focus-visible img,
+  .feature-image-link:hover .feature-image-cta, .feature-image-link:focus-visible .feature-image-cta,
+  .feature-game-link:hover span, .feature-game-link:focus-visible span,
+  .browse-card:hover, .browse-card:focus-visible, .browse-card:hover img, .browse-card:focus-visible img,
+  .browse-card:hover span b, .browse-card:focus-visible span b,
+  .product-card:hover, .product-card:focus-within, .product-card:hover .button, .product-card:focus-within .button,
+  .woocommerce .related.products ul.products li.product:hover, .woocommerce .related.products ul.products li.product:focus-within,
+  .woocommerce .related.products ul.products li.product .gamesog-related-customize:hover,
+  .button:hover, .wp-element-button:hover, .single_add_to_cart_button:hover, .checkout-button:hover { transform: none !important; }
+  .button, .wp-element-button, .single_add_to_cart_button, .checkout-button,
+  .home-hero .hero-featured-art img, .feature-game-link span, .browse-card span b,
+  .woocommerce .related.products ul.products li.product,
+  .woocommerce .related.products ul.products li.product a img,
+  .woocommerce .related.products ul.products li.product .gamesog-related-customize { transition: none !important; }
+}
+
+/* Mantiene ocultas las imágenes provisionales hasta dibujar la edición completa. */
+.product-card[data-product-card] img:not(.gamesog-mockup-ready),
+.gamesog-product-gallery img[data-gamesog-mockup="1"]:not(.gamesog-mockup-ready) { opacity: 0; }
+.product-card[data-product-card] img.gamesog-mockup-ready,
+.gamesog-product-gallery img[data-gamesog-mockup="1"].gamesog-mockup-ready { opacity: 1; transition: opacity 220ms ease; }
+/* Portadas de la portada: escala de objeto editorial, no de fondo de panel. */
+.home-hero .hero-featured-art img {
+  width: min(100%, 380px);
+  height: auto;
+  max-height: min(64vh, 560px);
+  object-fit: contain;
+}
+#gamesog-intro .intro-art {
+  width: min(32vw, 400px) !important;
+  height: min(62vh, 560px) !important;
+  max-width: 400px !important;
+  aspect-ratio: 2 / 3 !important;
+  justify-self: center !important;
+}
+#gamesog-intro .intro-art img {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+.feature-image-link {
+  width: min(100%, 340px);
+  justify-self: center;
+}
+.feature-image-link img {
+  width: 100%;
+  height: auto;
+  max-height: min(60vh, 510px);
+  object-fit: contain;
+}
+.feature-image-link img[src*="minecraft.jpg"] {
+  width: min(100%, 250px);
+}
+@media (max-width: 640px) {
+  .home-hero .hero-featured-art img {
+    width: min(76vw, 260px);
+    max-height: min(38vh, 300px);
+  }
+  #gamesog-intro .intro-art {
+    width: min(68vw, 260px) !important;
+    height: min(38vh, 310px) !important;
+    max-width: 260px !important;
+  }
+  .feature-image-link { width: min(100%, 300px); }
+  .feature-image-link img { max-height: min(55vh, 420px); }
+  .feature-image-link img[src*="minecraft.jpg"] { width: min(100%, 230px); }
+}
+/* Carcasa física completa en todas las imágenes de portada. */
+.home-hero .hero-featured-art {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  min-height: 0;
+  overflow: visible;
+}
+.home-hero .hero-featured-art img {
+  width: min(100%, 360px);
+  height: auto;
+  max-height: min(65vh, 540px);
+  object-fit: contain;
+}
+.home-hero .hero-featured-tag {
+  position: relative;
+  top: auto;
+  left: auto;
+  max-width: min(100%, 30rem);
+  margin: 0 auto;
+}
+.feature-image-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .45rem;
+  width: min(100%, 360px);
+}
+.feature-image-link img {
+  width: 100%;
+  height: auto;
+  max-height: min(62vh, 500px);
+  object-fit: contain;
+}
+.feature-image-cta {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  align-self: flex-end;
+  margin-top: -.1rem;
+}
+.browse-card img[data-gamesog-mockup="1"] {
+  aspect-ratio: 590 / 830;
+  object-fit: contain;
+  background: transparent;
+}
+#gamesog-intro .intro-art {
+  width: min(32vw, 400px) !important;
+  height: min(62vh, 560px) !important;
+  aspect-ratio: 590 / 830 !important;
+}
+#gamesog-intro .intro-art img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+#gamesog-intro .intro-art-caption { display: none !important; }
+.home-hero .hero-featured-art img.gamesog-mockup-loading,
+.feature-image-link img.gamesog-mockup-loading,
+.browse-card img.gamesog-mockup-loading,
+#gamesog-intro .intro-art img.gamesog-mockup-loading { opacity: 0; }
+.home-hero .hero-featured-art img.gamesog-mockup-ready,
+.feature-image-link img.gamesog-mockup-ready,
+.browse-card img.gamesog-mockup-ready,
+#gamesog-intro .intro-art img.gamesog-mockup-ready {
+  opacity: 1;
+  transition: opacity 220ms ease;
+}
+@media (max-width: 640px) {
+  .home-hero .hero-featured-art img {
+    width: min(72vw, 260px);
+    max-height: min(38vh, 310px);
+  }
+  .feature-image-link { width: min(100%, 300px); }
+  .feature-image-link img { max-height: min(55vh, 420px); }
+  #gamesog-intro .intro-art {
+    width: min(68vw, 260px) !important;
+    height: min(38vh, 310px) !important;
+    max-width: 260px !important;
+  }
+}
+/* Escala común para mostrar la caja completa sin dominar la composición. */
+.home-hero .hero-featured-art img { width: min(100%, 310px); max-height: min(58vh, 480px); height: auto; object-fit: contain; }
+#gamesog-intro .intro-art { width: min(27vw, 330px) !important; height: min(58vh, 480px) !important; max-width: 330px !important; aspect-ratio: 590 / 830 !important; }
+#gamesog-intro .intro-art img { width: 100% !important; height: 100% !important; object-fit: contain !important; }
+.feature-image-link { width: min(100%, 300px); }
+.feature-image-link img { width: 100%; height: auto; max-height: min(58vh, 460px); object-fit: contain; }
+.browse-card img[data-gamesog-mockup="1"] { display: block; width: min(100%, 250px); height: auto; max-height: min(55vh, 440px); aspect-ratio: 590 / 830; object-fit: contain; margin-inline: auto; border: 0; border-radius: 0; background: transparent; }
+.product-card[data-product-card] img[data-gamesog-mockup="1"]:not([data-gamesog-format="USB"]),
+.woocommerce .related.products img[data-gamesog-mockup="1"]:not([data-gamesog-format="USB"]) { display: block; width: min(100%, 240px); height: auto; max-height: min(48vh, 390px); aspect-ratio: 590 / 830; object-fit: contain; margin-inline: auto; background: transparent; }
+.product-card[data-product-card] img[data-gamesog-mockup="1"][data-gamesog-format="USB"],
+.woocommerce .related.products img[data-gamesog-mockup="1"][data-gamesog-format="USB"] { display: block; width: min(100%, 250px); height: auto; aspect-ratio: 1; object-fit: contain; margin-inline: auto; background: transparent; }
+.gamesog-product-gallery img[data-gamesog-mockup="1"]:not([data-gamesog-format="USB"]) { display: block; width: min(100%, 440px); height: auto; max-height: min(72vh, 680px); aspect-ratio: 590 / 830; object-fit: contain; margin-inline: auto; background: transparent; }
+.gamesog-product-gallery img[data-gamesog-mockup="1"][data-gamesog-format="USB"] { display: block; width: min(100%, 520px); height: auto; max-height: min(65vh, 560px); aspect-ratio: 1; object-fit: contain; margin-inline: auto; background: transparent; }
+@media (max-width: 640px) {
+  .home-hero .hero-featured-art img { width: min(72vw, 250px); max-height: min(40vh, 320px); }
+  #gamesog-intro .intro-art { width: min(64vw, 250px) !important; height: min(42vh, 340px) !important; max-width: 250px !important; }
+  .feature-image-link { width: min(100%, 260px); }
+  .feature-image-link img { max-height: min(50vh, 360px); }
+  .browse-card img[data-gamesog-mockup="1"] { width: min(100%, 210px); max-height: 340px; }
+  .product-card[data-product-card] img[data-gamesog-mockup="1"]:not([data-gamesog-format="USB"]),
+  .woocommerce .related.products img[data-gamesog-mockup="1"]:not([data-gamesog-format="USB"]) { width: min(100%, 200px); max-height: 320px; }
+  .gamesog-product-gallery img[data-gamesog-mockup="1"]:not([data-gamesog-format="USB"]) { width: min(100%, 300px); max-height: 52vh; }
+}
+/* La galería de WooCommerce tiene reglas más específicas; estas fijan el tamaño real del estuche. */
+.woocommerce div.product div.images.gamesog-product-gallery img[data-gamesog-mockup="1"]:not([data-gamesog-format="USB"]) { width: min(100%, 400px); max-width: 400px; height: auto; max-height: min(70vh, 620px); aspect-ratio: 590 / 830; object-fit: contain; margin-inline: auto; border: 0; border-radius: 0; background: transparent; }
+.woocommerce div.product div.images.gamesog-product-gallery img[data-gamesog-mockup="1"][data-gamesog-format="USB"] { width: min(100%, 480px); max-width: 480px; height: auto; max-height: min(62vh, 520px); aspect-ratio: 1; object-fit: contain; margin-inline: auto; border: 0; border-radius: 0; background: transparent; }
+@media (max-width: 640px) {
+  .woocommerce div.product div.images.gamesog-product-gallery img[data-gamesog-mockup="1"]:not([data-gamesog-format="USB"]) { width: min(100%, 290px); max-width: 290px; max-height: 50vh; }
+}
+/* El marco y la sombra los dibuja la carcasa SVG; evita un segundo marco rectangular. */
+.home-hero .hero-featured-art img { border: 0; border-radius: 0; box-shadow: none; background: transparent; }
+.feature-image-link img[data-gamesog-mockup="1"],
+.browse-card img[data-gamesog-mockup="1"],
+.product-card[data-product-card] img[data-gamesog-mockup="1"],
+.woocommerce .related.products img[data-gamesog-mockup="1"] { border: 0; border-radius: 0; box-shadow: none; background: transparent; }
+/* El logotipo proporcionado usa PNG transparente con el margen vacío recortado. */
+/* Haloes construidos con degradados amplios: sin filtros que formen cajas cuadradas. */
+.home-hero .hero-art::before { filter: blur(58px); opacity: .24; transform: scale(.96); }
+.page-catalog .product-card-image { position: relative; isolation: isolate; }
+.page-catalog .product-card-image::before { content: ""; position: absolute; z-index: 0; inset: -8% -12%; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(222, 181, 94, .22) 0%, rgba(205, 111, 85, .12) 38%, rgba(205, 111, 85, .035) 58%, rgba(205, 111, 85, 0) 74%); opacity: .95; pointer-events: none; transition: opacity 300ms ease; }
+.page-catalog .product-card:hover .product-card-image::before { opacity: 1; }
+.page-catalog .product-card-image img { position: relative; z-index: 1; }
+.feature-image-link { position: relative; isolation: isolate; overflow: visible; }
+.feature-image-link::before { content: ""; position: absolute; z-index: 0; inset: -20%; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(222, 181, 94, .22) 0%, rgba(205, 111, 85, .12) 38%, rgba(205, 111, 85, .035) 58%, rgba(205, 111, 85, 0) 74%); pointer-events: none; }
+.feature-image-link::after { display: none; }
+.feature-image-link img[data-gamesog-mockup="1"] { position: relative; z-index: 1; }
+.feature-image-link .feature-image-cta { z-index: 2; }
+.page-catalog .product-card-image img.gamesog-mockup-loading,
+.woocommerce .related.products img.gamesog-mockup-loading,
+.gamesog-product-gallery img.gamesog-mockup-loading { opacity: 0; }
+.page-catalog .product-card-image img.gamesog-mockup-ready,
+.woocommerce .related.products img.gamesog-mockup-ready,
+.gamesog-product-gallery img.gamesog-mockup-ready,
+.feature-image-link img.gamesog-mockup-ready { opacity: 1; transition: opacity 180ms ease; }

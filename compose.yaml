@@ -1,0 +1,90 @@
+name: gamesog
+services:
+  db:
+    image: mariadb:11.4.13
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${WORDPRESS_DB_NAME:?Set WORDPRESS_DB_NAME in .env}
+      MARIADB_USER: ${WORDPRESS_DB_USER:?Set WORDPRESS_DB_USER in .env}
+      MARIADB_PASSWORD: ${WORDPRESS_DB_PASSWORD:?Set WORDPRESS_DB_PASSWORD in .env}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:?Set MARIADB_ROOT_PASSWORD in .env}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks: [backend]
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+  wordpress:
+    image: wordpress:7.1.2-php8.3-apache
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${WP_BIND_ADDRESS:-127.0.0.1}:${WP_PORT:-8080}:80"
+    environment:
+      WP_SITE_URL: "${WP_SITE_URL:-http://127.0.0.1:8080}"
+      WP_ENVIRONMENT_TYPE: local
+      GAMESOG_LOCAL_DEMO: "1"
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME:?Set WORDPRESS_DB_NAME in .env}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER:?Set WORDPRESS_DB_USER in .env}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD:?Set WORDPRESS_DB_PASSWORD in .env}
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_ENVIRONMENT_TYPE', 'local');
+        define('DISALLOW_FILE_EDIT', true);
+        define('WP_HOME', getenv('WP_SITE_URL'));
+        define('WP_SITEURL', getenv('WP_SITE_URL'));
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./wp-content/themes/gamesog:/var/www/html/wp-content/themes/gamesog:ro
+      - ./wp-content/plugins/gamesog-core:/var/www/html/wp-content/plugins/gamesog-core:ro
+      - private_evidence:/var/private/gamesog-evidence
+    command: ["bash", "-c", "mkdir -p /var/private/gamesog-evidence && chown www-data:www-data /var/private/gamesog-evidence && chmod 0700 /var/private/gamesog-evidence && exec apache2-foreground"]
+    networks: [backend]
+    healthcheck:
+      test: ["CMD", "php", "-r", "$$s=@fsockopen('127.0.0.1',80); exit($$s?0:1);"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 45s
+  wpcli:
+    image: wordpress:cli-2.12.0-php8.3
+    entrypoint: ["wp"]
+    profiles: ["tools"]
+    user: "33:33"
+    working_dir: /var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+      wordpress:
+        condition: service_started
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./wp-content/themes/gamesog:/var/www/html/wp-content/themes/gamesog:ro
+      - ./wp-content/plugins/gamesog-core:/var/www/html/wp-content/plugins/gamesog-core:ro
+    environment:
+      WP_SITE_URL: "${WP_SITE_URL:-http://127.0.0.1:8080}"
+      WP_ENVIRONMENT_TYPE: local
+      GAMESOG_LOCAL_DEMO: "1"
+      HTTP_HOST: localhost
+      HOME: /tmp
+      WP_CLI_CACHE_DIR: /tmp/wp-cli/cache
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME:?Set WORDPRESS_DB_NAME in .env}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER:?Set WORDPRESS_DB_USER in .env}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD:?Set WORDPRESS_DB_PASSWORD in .env}
+    networks: [backend]
+networks:
+  backend:
+    driver: bridge
+volumes:
+  db_data:
+    name: gamesog_db_data
+  wordpress_data:
+    name: gamesog_wordpress_data
+  private_evidence:
+    name: gamesog_private_evidence

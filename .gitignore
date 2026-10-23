@@ -1,0 +1,25 @@
+# Credenciales y configuración local
+.env
+.env.*
+!.env.example
+
+# Copias de seguridad manuales o generadas por scripts
+*.bak
+*.backup
+/wp-content/themes/gamesog/assets/images/**/.antes-*/
+
+# Datos de WordPress y dependencias descargadas en el servidor
+/wp-content/uploads/
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/languages/
+/wp-content/plugins/woocommerce/
+
+# Volcados, registros y archivos temporales
+*.sql
+*.sql.gz
+*.dump
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
