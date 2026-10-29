@@ -39,15 +39,42 @@
 
 ## Pendiente de prueba manual
 
-- [ ] Pruebas visuales de navegador/móvil, logs, backup/restauración y persistencia tras reinicio.
-- [ ] Probar selección de formato, diseño y color, precio calculado en servidor y envío al carrito desde las fichas.
-- [ ] Completar pruebas manuales de seis fichas, precio, carrito/pedido, privacidad de evidencias y permiso de mensajes. Falta verificar la descarga de evidencia por un administrador autenticado.
-- [ ] Confirmar la portada tras recrear WordPress y revisar logs por avisos PHP.
-- [ ] Ejecutar `setup-site.sh` y confirmar interfaz WooCommerce en español; revisar imágenes, proporciones y enlaces Personalizar en las recomendaciones de una ficha.
-- [ ] Probar «Cómo funciona» desde Inicio y desde una página interna; revisar que se desplaza al bloque sin volver a mostrar la entrada.
-- [ ] Revisar visualmente la nueva capa de acabado en escritorio y móvil, con tema claro/oscuro y movimiento reducido; confirmar que la aparición progresiva no deja tarjetas ocultas.
-- [ ] Revisar que la galería del producto no tape las pestañas ni el texto durante el scroll.
-- [ ] Pulsar cada juego destacado de la portada y confirmar su ficha; revisar hover, foco de teclado y botones de recomendaciones en móvil.
+### Instalación y persistencia
+
+- [ ] Ejecutar `bash scripts/setup-site.sh`; confirmar WordPress y WooCommerce en español y que se conservan páginas y productos existentes.
+- [ ] Recrear WordPress; confirmar HTTP 200 en Inicio y Catálogo y ausencia de errores/avisos PHP en los logs.
+- [ ] Reiniciar WordPress y Docker; confirmar que páginas, seis productos, ajustes y pedidos de prueba persisten.
+- [ ] Crear una copia con `scripts/backup.sh`; restaurarla en un entorno aislado y confirmar base de datos, archivos y evidencias privadas.
+
+### Fichas, opciones y compra
+
+- [ ] Abrir las seis fichas; confirmar título, imagen, precio y enlace de personalización.
+- [ ] Probar cada formato disponible (CD, DVD y USB) en las fichas; confirmar que la maqueta coincide con la selección.
+- [ ] Probar diseño básico y especial donde esté disponible; confirmar que el especial no permite elegir color.
+- [ ] Cambiar colores básicos; confirmar que la maqueta refleja el color seleccionado.
+- [ ] Añadir configuraciones al carrito; comparar precio de ficha, precio de línea y total recalculado en servidor.
+- [ ] Completar un pedido de demostración; confirmar opciones, estado inicial de revisión y ausencia de cobro o correo real.
+
+### Evidencias y mensajes
+
+- [ ] Subir una evidencia válida y probar formatos/tamaños rechazados; confirmar que los archivos quedan fuera de la raíz web.
+- [ ] Solicitar una evidencia como visitante; confirmar denegación HTTP.
+- [ ] Descargar y eliminar una evidencia con un administrador autenticado; confirmar que después ya no se puede descargar.
+- [ ] Enviar un mensaje de contacto ficticio; confirmar que queda guardado y solo lo ve un administrador autorizado.
+
+### Catálogo y navegación
+
+- [ ] Revisar recomendaciones de una ficha: idioma español, imágenes y proporciones correctas, y botón «Personalizar» funcional.
+- [ ] Pulsar «Cómo funciona» desde Inicio y desde una página interna; confirmar que llega al bloque y la entrada no vuelve a cubrirlo.
+- [ ] Pulsar cada juego destacado de Inicio; confirmar que abre la ficha correcta.
+- [ ] Revisar hover, foco de teclado y botones de recomendaciones en móvil.
+
+### Revisión visual y accesibilidad
+
+- [ ] Revisar Inicio, Catálogo, fichas y recomendaciones en escritorio y móvil, con tema claro y oscuro.
+- [ ] Activar movimiento reducido; confirmar que las animaciones se reducen y las tarjetas siguen visibles.
+- [ ] Recorrer el Catálogo; confirmar que la aparición progresiva no deja tarjetas ocultas.
+- [ ] Desplazarse por la ficha; confirmar que la galería no tapa pestañas ni texto.
 
 ## Pendiente
 
