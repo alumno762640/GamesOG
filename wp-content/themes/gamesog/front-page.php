@@ -89,7 +89,7 @@ $hogwartsUrl = $productUrl("hogwarts-legacy");
   <div class="intro-door intro-door-left" aria-hidden="true"></div>
   <div class="intro-door intro-door-right" aria-hidden="true"></div>
   <header class="intro-topline">
-    <a class="brand" href="<?php echo esc_url(home_url("/")); ?>"><span class="brand-mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 32" fill="none"><path d="M14 4h20c5 0 8 3 9 8l3 12c1 4-4 6-7 3l-6-6H15l-6 6c-3 3-8 1-7-3l3-12c1-5 4-8 9-8Z" fill="#F3D477" stroke="#171715" stroke-width="2"/><path d="M13 10v10m-5-5h10" stroke="#171715" stroke-width="2.5"/><circle cx="33" cy="13" r="2" fill="#327DA1"/><circle cx="38" cy="18" r="2" fill="#D76C59"/></svg></span><span>GamesOG</span></a>
+    <a class="brand" href="<?php echo esc_url(home_url("/")); ?>"><span class="brand-mark" aria-hidden="true"><img src="<?php echo esc_url(get_template_directory_uri() . "/assets/images/gamesog-logo.png"); ?>" alt="" width="40" height="40"></span><span>GamesOG</span></a>
     <div class="intro-actions">
       <nav class="intro-nav" aria-label="Navegación de entrada"><a href="<?php echo esc_url(home_url("/catalogo/")); ?>">Catálogo</a><a href="<?php echo esc_url(home_url("/sobre-nosotros/")); ?>">Sobre nosotros</a><a href="<?php echo esc_url(home_url("/contacto/")); ?>">Contacto</a></nav>
       <button class="theme-toggle" type="button" aria-label="Cambiar a tema claro" aria-pressed="false">◐ <span class="theme-label">Tema</span></button>
