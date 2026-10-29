@@ -1,5 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 2000">
-<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#315c91"/><stop offset=".42" stop-color="#7fc4bd"/><stop offset=".7" stop-color="#88a957"/><stop offset="1" stop-color="#425d37"/></linearGradient></defs>
-<rect width="160" height="2000" fill="url(#sky)"/><circle cx="82" cy="390" r="80" fill="#f3d474" opacity=".92"/><path d="M0 725 42 610l35 65 34-106 49 148v180H0z" fill="#729e91"/><path d="m0 905 47-95 37 80 32-108 44 102v240H0z" fill="#4e8064"/><path d="M0 1124h160v876H0z" fill="#657a3d"/><path d="M0 1450q40-95 80 0t80 0v230q-40-75-80 0t-80 0z" fill="#8ba94d" opacity=".8"/><g fill="#e8d88d"><circle cx="28" cy="1260" r="13"/><circle cx="128" cy="1320" r="11"/><circle cx="52" cy="1740" r="10"/><circle cx="112" cy="1835" r="14"/></g>
-<g transform="rotate(-90 80 1040)" text-anchor="middle" font-family="Georgia,serif"><text x="80" y="1010" fill="#fff1bd" font-size="66" font-weight="700" letter-spacing="1">STARDEW VALLEY</text><text x="80" y="1080" fill="#f5df9d" font-family="Arial,sans-serif" font-size="24" font-weight="700" letter-spacing="7">EDICIÓN DE MUESTRA</text></g>
-<path d="M8 10h144v1980H8z" fill="none" stroke="#f1e4b6" stroke-opacity=".8" stroke-width="5"/></svg>
+<defs><linearGradient id="s-sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#365d91"/><stop offset=".42" stop-color="#72b5ac"/><stop offset=".72" stop-color="#91ad62"/><stop offset="1" stop-color="#435b3a"/></linearGradient></defs>
+<rect width="160" height="2000" fill="url(#s-sky)"/>
+<path d="M16 0v2000M144 0v2000" stroke="#fff0c2" stroke-opacity=".18" stroke-width="2"/>
+<circle cx="80" cy="325" r="62" fill="#f5d57b" opacity=".96"/><circle cx="80" cy="325" r="78" fill="none" stroke="#f5d57b" stroke-opacity=".34" stroke-width="3"/>
+<path d="M0 760 38 630l34 80 38-155 50 180v230H0z" fill="#72958c"/><path d="M0 910 42 800l39 90 36-128 43 118v240H0z" fill="#4e795f"/><path d="M0 1100h160v900H0z" fill="#586f3f"/>
+<g transform="rotate(-90 80 1000)" text-anchor="middle" font-family="Georgia,serif"><text x="80" y="1024" fill="#fff3c9" font-size="58" font-weight="700" letter-spacing="1">STARDEW VALLEY</text></g>
+<g transform="rotate(-90 80 1640)" text-anchor="middle" font-family="Arial,sans-serif"><text x="80" y="1647" fill="#fff0bd" font-size="22" font-weight="700" letter-spacing="5">EDICIÓN DE MUESTRA</text></g>
+<g fill="#f5df9d"><circle cx="38" cy="1290" r="9"/><circle cx="120" cy="1360" r="8"/><circle cx="54" cy="1770" r="8"/><circle cx="108" cy="1850" r="10"/></g>
+<path d="M8 10h144v1980H8z" fill="none" stroke="#fff0c2" stroke-opacity=".7" stroke-width="4"/>
+</svg>
