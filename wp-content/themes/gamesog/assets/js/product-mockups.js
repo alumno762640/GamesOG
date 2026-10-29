@@ -12,13 +12,13 @@
   const mediaExtensions = {
     logos: { 'red-dead-redemption-2': 'png', minecraft: 'png', 'cyberpunk-2077': 'png', 'elden-ring': 'png', 'stardew-valley': 'png', 'hogwarts-legacy': 'png' },
     fanart: { 'red-dead-redemption-2': 'jpg', minecraft: 'jpg', 'cyberpunk-2077': 'jpg', 'elden-ring': 'jpg', 'stardew-valley': 'jpg', 'hogwarts-legacy': 'jpg' },
-    spines: { 'red-dead-redemption-2': 'jpg', 'cyberpunk-2077': 'jpg', 'elden-ring': 'jpg', 'hogwarts-legacy': 'jpg' }
+    spines: { 'red-dead-redemption-2': 'jpg', minecraft: 'svg', 'cyberpunk-2077': 'jpg', 'elden-ring': 'jpg', 'stardew-valley': 'svg', 'hogwarts-legacy': 'jpg' }
   };
   const originalMediaExtensions = {
     covers: { 'red-dead-redemption-2': 'jpg', minecraft: 'jpg', 'cyberpunk-2077': 'jpg', 'elden-ring': 'jpg', 'stardew-valley': 'jpg', 'hogwarts-legacy': 'jpg' },
     logos: { 'red-dead-redemption-2': 'png', minecraft: 'png', 'cyberpunk-2077': 'png', 'elden-ring': 'png', 'stardew-valley': 'png', 'hogwarts-legacy': 'png' },
     fanart: { 'red-dead-redemption-2': 'jpg', minecraft: 'jpg', 'cyberpunk-2077': 'jpg', 'elden-ring': 'jpg', 'stardew-valley': 'png', 'hogwarts-legacy': 'png' },
-    spines: { 'red-dead-redemption-2': 'jpg', 'cyberpunk-2077': 'jpg', 'elden-ring': 'jpg', 'hogwarts-legacy': 'jpg' }
+    spines: { 'red-dead-redemption-2': 'jpg', minecraft: 'svg', 'cyberpunk-2077': 'jpg', 'elden-ring': 'jpg', 'stardew-valley': 'svg', 'hogwarts-legacy': 'jpg' }
   };
   const specialPalettes = {
     'cyberpunk-2077': ['#e8c83e', '#17191a', '#f6e5a5'],
@@ -148,13 +148,14 @@
             if (!extension) return;
             const originalRoot = root.replace(/optimized\/$/, '');
             const assetRoot = key === 'spineData' ? originalRoot : root;
-            const url = key === 'coverData' ? coverUrl : assetRoot + folder + '/' + slug + '.' + extension;
-            let response = await fetch(url, { credentials: 'same-origin' });
+            const version = key === 'spineData' && img.dataset.gamesogMediaVersion ? '?v=' + encodeURIComponent(img.dataset.gamesogMediaVersion) : '';
+            const url = key === 'coverData' ? coverUrl : assetRoot + folder + '/' + slug + '.' + extension + version;
+            let response = await fetch(url, { credentials: 'same-origin', cache: 'reload' });
             let blob = response.ok ? await response.blob() : null;
             if (!blob || !blob.type.startsWith('image/')) {
               const extension = originalMediaExtensions[folder]?.[slug];
               if (!extension) return;
-              response = await fetch(originalRoot + folder + '/' + slug + '.' + extension, { credentials: 'same-origin' });
+              response = await fetch(originalRoot + folder + '/' + slug + '.' + extension + version, { credentials: 'same-origin', cache: 'reload' });
               if (!response.ok) return;
               blob = await response.blob();
             }

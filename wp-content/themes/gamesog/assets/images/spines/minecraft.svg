@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 2000">
+<defs><linearGradient id="bg" x2="0" y2="1"><stop stop-color="#315a3d"/><stop offset=".45" stop-color="#487346"/><stop offset="1" stop-color="#1e342a"/></linearGradient><linearGradient id="stone" x2="0" y2="1"><stop stop-color="#85877b"/><stop offset="1" stop-color="#4a514a"/></linearGradient></defs>
+<rect width="160" height="2000" fill="url(#bg)"/><path d="M0 0h160v270H0z" fill="#91b85c"/><path d="M0 270h160v105H0z" fill="#66594e"/><path d="M0 375h160v440H0z" fill="url(#stone)"/><path d="M0 815h160v150H0z" fill="#355b42"/><path d="M0 965h160v420H0z" fill="#62685d"/><path d="M0 1385h160v130H0z" fill="#355b42"/><path d="M0 1515h160v485H0z" fill="#3d493e"/>
+<g fill="#202d24" opacity=".55"><path d="M0 270h54v70H0zm103 0h57v70h-57zM0 815h80v90H0zm124 0h36v90h-36zM0 1385h46v84H0zm97 0h63v84H97z"/><path d="M54 270h49v70H54zM80 815h44v90H80zM46 1385h51v84H46z" fill="#aec37c" opacity=".5"/></g>
+<g transform="rotate(-90 80 1040)" text-anchor="middle" font-family="Arial,sans-serif"><text x="80" y="1010" fill="#f3f1e7" font-size="82" font-weight="900" letter-spacing="2">MINECRAFT</text><text x="80" y="1085" fill="#d7dfb4" font-size="27" font-weight="700" letter-spacing="8">EDICIÓN DE MUESTRA</text></g>
+<path d="M8 10h144v1980H8z" fill="none" stroke="#c6c7ad" stroke-opacity=".72" stroke-width="5"/></svg>
