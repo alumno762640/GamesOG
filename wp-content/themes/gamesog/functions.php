@@ -56,7 +56,7 @@ function gamesog_related_product_image($image, $product, $size, $attr, $placehol
  $attributes["class"] = trim(($attributes["class"] ?? "") . " attachment-" . $size_class . " size-" . $size_class . " wp-post-image gamesog-local-product-art");
  $attributes["loading"] = $attributes["loading"] ?? "lazy";
  $attributes["decoding"] = $attributes["decoding"] ?? "async";
- $allowed = ["src", "alt", "class", "title", "width", "height", "loading", "decoding", "fetchpriority", "sizes", "role", "aria-hidden", "data-gamesog-mockup", "data-gamesog-title", "data-gamesog-slug", "data-gamesog-cover", "data-gamesog-format", "data-gamesog-design", "data-gamesog-color"];
+ $allowed = ["src", "alt", "class", "title", "width", "height", "loading", "decoding", "fetchpriority", "sizes", "role", "aria-hidden", "data-gamesog-mockup", "data-gamesog-title", "data-gamesog-slug", "data-gamesog-cover", "data-gamesog-format", "data-gamesog-design", "data-gamesog-color", "data-gamesog-catalog"];
  $html = "<img";
  foreach ($attributes as $name => $value) {
   if (!in_array($name, $allowed, true) || !is_scalar($value)) continue;

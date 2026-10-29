@@ -58,7 +58,7 @@
     const art = artImage(img, x, y, w, h, 0, fallbackArt(img.dataset.gamesogSlug, palette[1], accent), 'slice', frontArt);
     const spineClipId = 'spine-clip-' + String(img.dataset.gamesogSlug || 'game').replace(/[^a-z0-9-]/gi, '');
     const spineBase = '<path d="' + spinePath + '" fill="' + spineFill + '" stroke="#777a74" stroke-width="2"/>';
-    const spine = img.dataset.spineData && !special
+    const spine = img.dataset.spineData && (!special || img.dataset.gamesogCatalog === '1')
       ? '<defs><clipPath id="' + spineClipId + '"><path d="' + spinePath + '"/></clipPath></defs><image href="' + img.dataset.spineData + '" x="' + spineX + '" y="' + y + '" width="' + spineW + '" height="' + h + '" preserveAspectRatio="xMidYMid slice" clip-path="url(#' + spineClipId + ')"/><path d="' + spinePath + '" fill="none" stroke="#777a74" stroke-width="2"/>'
       : spineBase + '<text transform="translate(' + (spineX + 32) + ' ' + (y + h - 22) + ') rotate(-90)" fill="#f4eee0" font-family="Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="2">' + esc(title.toUpperCase()) + '</text>';
     const sheen = special ? '<path d="M' + (x + 3) + ' ' + (y + 2) + 'v' + (h - 4) + '" stroke="url(#shine)" stroke-width="2" opacity=".45"/>' : '';
@@ -139,7 +139,7 @@
       } else if (format === 'USB') {
         sources.push(design === 'especial' ? ['fanartData', 'fanart', mediaExtensions.fanart[slug]] : ['logoData', 'logos', mediaExtensions.logos[slug]]);
       } else {
-        if (design !== 'especial') sources.push(['spineData', 'spines', mediaExtensions.spines[slug]]);
+        if (design !== 'especial' || img.dataset.gamesogCatalog === '1') sources.push(['spineData', 'spines', mediaExtensions.spines[slug]]);
         if (design === 'especial') sources.push(['fanartData', 'fanart', mediaExtensions.fanart[slug]]);
       }
       const load = async () => {
