@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 2000">
 <defs>
- <linearGradient id="m-bg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#24362d"/><stop offset=".5" stop-color="#355b42"/><stop offset="1" stop-color="#1c2a24"/></linearGradient>
+ <linearGradient id="m-bg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#527b48"/><stop offset=".5" stop-color="#6f9655"/><stop offset="1" stop-color="#456b43"/></linearGradient>
  <linearGradient id="m-cube" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#bdd27c"/><stop offset="1" stop-color="#6e9b54"/></linearGradient>
 </defs>
 <rect width="160" height="2000" fill="url(#m-bg)"/>
@@ -9,5 +9,5 @@
 <g transform="rotate(-90 80 1000)" text-anchor="middle" font-family="Arial,sans-serif"><text x="80" y="1028" fill="#f6f4e9" font-size="104" font-weight="900" letter-spacing="1">MINECRAFT</text></g>
 <g transform="rotate(-90 80 1640)" text-anchor="middle" font-family="Arial,sans-serif"><text x="80" y="1648" fill="#c8d6a0" font-size="27" font-weight="700" letter-spacing="6">EDICIÓN DE MUESTRA</text></g>
 <g fill="#d4bd70" opacity=".9"><rect x="42" y="1810" width="22" height="22"/><rect x="68" y="1810" width="22" height="22"/><rect x="94" y="1810" width="22" height="22"/></g>
-<path d="M8 10h144v1980H8z" fill="none" stroke="#d3d7c5" stroke-opacity=".58" stroke-width="4"/>
+<path d="M8 10h144v1980H8z" fill="none" stroke="#e2e8c7" stroke-opacity=".88" stroke-width="5"/>
 </svg>
