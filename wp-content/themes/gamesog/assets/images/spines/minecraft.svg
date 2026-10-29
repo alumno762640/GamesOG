@@ -6,8 +6,8 @@
 <rect width="160" height="2000" fill="url(#m-bg)"/>
 <path d="M16 0v2000M144 0v2000" stroke="#d5dfb2" stroke-opacity=".16" stroke-width="2"/>
 <g transform="translate(80 300)"><path d="m0-72 62 36v72L0 72l-62-36v-72z" fill="url(#m-cube)"/><path d="m0-72 62 36L0 0l-62-36z" fill="#b6cf76"/><path d="M0 0v72l62-36v-72z" fill="#5d884c"/><path d="M-62-36 0 0v72l-62-36z" fill="#7ba456"/></g>
-<g transform="rotate(-90 80 1000)" text-anchor="middle" font-family="Arial,sans-serif"><text x="80" y="1028" fill="#f6f4e9" font-size="78" font-weight="900" letter-spacing="1">MINECRAFT</text></g>
-<g transform="rotate(-90 80 1640)" text-anchor="middle" font-family="Arial,sans-serif"><text x="80" y="1648" fill="#c8d6a0" font-size="23" font-weight="700" letter-spacing="6">EDICIÓN DE MUESTRA</text></g>
+<g transform="rotate(-90 80 1000)" text-anchor="middle" font-family="Arial,sans-serif"><text x="80" y="1028" fill="#f6f4e9" font-size="104" font-weight="900" letter-spacing="1">MINECRAFT</text></g>
+<g transform="rotate(-90 80 1640)" text-anchor="middle" font-family="Arial,sans-serif"><text x="80" y="1648" fill="#c8d6a0" font-size="27" font-weight="700" letter-spacing="6">EDICIÓN DE MUESTRA</text></g>
 <g fill="#d4bd70" opacity=".9"><rect x="42" y="1810" width="22" height="22"/><rect x="68" y="1810" width="22" height="22"/><rect x="94" y="1810" width="22" height="22"/></g>
 <path d="M8 10h144v1980H8z" fill="none" stroke="#d3d7c5" stroke-opacity=".58" stroke-width="4"/>
 </svg>
