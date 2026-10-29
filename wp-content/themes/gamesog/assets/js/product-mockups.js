@@ -146,13 +146,14 @@
         if (root) {
           await Promise.allSettled(sources.map(async ([key, folder, extension]) => {
             if (!extension) return;
-            const url = key === 'coverData' ? coverUrl : root + folder + '/' + slug + '.' + extension;
+            const originalRoot = root.replace(/optimized\/$/, '');
+            const assetRoot = key === 'spineData' ? originalRoot : root;
+            const url = key === 'coverData' ? coverUrl : assetRoot + folder + '/' + slug + '.' + extension;
             let response = await fetch(url, { credentials: 'same-origin' });
             let blob = response.ok ? await response.blob() : null;
             if (!blob || !blob.type.startsWith('image/')) {
               const extension = originalMediaExtensions[folder]?.[slug];
               if (!extension) return;
-              const originalRoot = root.replace(/optimized\/$/, '');
               response = await fetch(originalRoot + folder + '/' + slug + '.' + extension, { credentials: 'same-origin' });
               if (!response.ok) return;
               blob = await response.blob();
