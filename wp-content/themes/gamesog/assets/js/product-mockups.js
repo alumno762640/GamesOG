@@ -51,7 +51,7 @@
   const packageMockup = (img, title, format, special, palette) => {
     const x = 300, y = 142, w = 450, h = 675, spineW = 48, spineX = x - spineW;
     const accent = palette[0];
-    const spinePath = 'M' + spineX + ' ' + (y - 3) + ' L' + (x - 3) + ' ' + (y - 3) + ' L' + (x - 3) + ' ' + (y + h + 3) + ' L' + spineX + ' ' + (y + h + 3) + ' Z';
+    const spinePath = 'M' + spineX + ' ' + (y + 8) + ' L' + (x - 3) + ' ' + (y - 3) + ' L' + (x - 3) + ' ' + (y + h + 3) + ' L' + spineX + ' ' + (y + h - 8) + ' Z';
     const spineFill = special ? '#383a38' : palette[0];
     const frontArt = special ? (img.dataset.fanartData || img.dataset.coverData) : img.dataset.coverData;
     const shell = '<rect x="' + (x - 3) + '" y="' + (y - 3) + '" width="' + (w + 6) + '" height="' + (h + 6) + '" rx="4" fill="' + (special ? 'url(#steel-edge)' : '#262a28') + '" stroke="' + (special ? '#c9c7bd' : '#777a74') + '" stroke-width="2"/>';
